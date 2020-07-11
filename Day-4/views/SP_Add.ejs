@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="http://localhost:3000" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Pham Add</title>
+    <script src="./jquery.js"></script>
+    <link rel="stylesheet" href="./SP_Add/SP_Add.css" />
+    <script src="./SP_add/xuly.js"></script>
+
+    <script src='https://cdn.tiny.cloud/1/a4kgptxu5xafksjx9ee97tftchojof6ui5azb92pvijojr1s/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+    </script>
+    <script>
+      tinymce.init({
+        selector: '#txt_MoTa'
+      });
+    </script>
+
+</head>
+<body>
+    <h2>Sản Phẩm New</h2>
+    <form action="./SP_Add" method="POST">
+        <div class="inputSP">
+            <input type="text" name="txt_Ten" id="txt_Ten" placeholder="Tên sản phẩm" />
+        </div>
+
+        <div class="inputSP">
+            <input type="text" name="txt_Gia" id="txt_Gia" placeholder="Giá sản phẩm" />
+        </div>
+        
+        <div class="inputSP">
+            <textarea name="txt_MoTa" id="txt_MoTa" cols="30" rows="10"></textarea>
+        </div>
+        
+        <div class="inputSP">
+        <select name="slcNhom" id="slcNhom">
+            <option value="">Mới nhất</option>
+        </select>
+        </div>
+        
+        <div class="inputSP nhom">
+
+            <select name="slcLoai" id="slcLoai">
+                <% mangLoaiSP.forEach(function(loaiSP){ %>
+                    <option value="<%- loaiSP._id %>"><%- loaiSP.Ten %></option>
+                <% }) %>
+            </select>
+
+            <div id="quanlyLoaiSP">
+                <input type="button" value="Quản lí Loại S" id="btnFrmLoaiSP">
+                <div id="formLoaiSP">
+    
+                    <input type="text" id="txtTenLoaiSP" placeholder="Tên Loại SP" />
+                    <input type="button" id="btnThemLoaiSP" value="Thêm Loại SP" />
+                    <div id="dsLoaiSP">
+                        <table id="tblLoaiSP">
+                            <% mangLoaiSP.forEach(function(loaiSP){ %>
+                                <tr>
+                                    <td class="rowLoaiSP" idLoai="<%- loaiSP._id %>"><%- loaiSP.Ten %></td>
+                                    <td></td>
+                                </tr>
+                            <% }) %>
+                    
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+        
+        <div class="inputSP">
+            <input type="file" name="fileHinhSP" id="fileHinhSP" />
+            <input type="hidden" value="" name="tenFileHinhDaUpload" id="tenFileHinhDaUpload" value="XXXXX"/>
+            <img id="imgDemo" width="150" src="" />
+        </div>
+
+        <input type="submit" name="btnThemSPMoi" value="Thêm SP" />
+
+    </form>
+
+    <div id="baoBenNgoai">
+    </div>
+    <div id="frmSuaTenLoai">
+        <input type="text" id="txtSuaTenLoai" idLoai=""/>
+        <button id="btnSuaTenLoai">Sửa loại</button>
+        <button id="btnDongFrm">Đóng</button>
+    </div>
+
+</body>
+</html>
